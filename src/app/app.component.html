@@ -82,6 +82,23 @@
       <td>date:'MMMM-dd'</td>
       <td> {{fecha|date:'MMMM-dd'}} </td>
     </tr>
+    <tr>
+     <td> {{nombre2}} </td>
+      <td>capitalizado</td>
+      <td> {{nombre2|capitalizado}} </td>
+    </tr>
+    <tr>
+     <td> {{"aaa"}} </td>
+      <td>password:{{activar}}
+      </td>
+      <td> {{"aaa"|password:activar}} </td>
+    </tr>
+    <tr>
+     <td></td>
+      <td>     <button (click)="activar=!activar" class="btn btn-info" type="button" bname="button">Cambiar</button>
+      </td>
+      <td></td>
+    </tr>
   </tbody>
 </table>
 
@@ -94,5 +111,9 @@
     <h4>JSON</h4>
     <br><br>
     <pre>{{heroe | json}}</pre>
+
+    <h4>YOUTUBE</h4>
+    <hr>
+    <iframe width="560" height="315" [src]="video|domseguro:'https://www.youtube.com/embed/'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 </div>

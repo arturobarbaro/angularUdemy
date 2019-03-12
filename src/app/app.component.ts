@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   nombre = "Arturo";
+  nombre2 = "Arturo barba roDriguez";
 
   array = [1,2,3,4,5,6,7,8,9];
 
@@ -30,4 +31,8 @@ export class AppComponent {
   })
 
   fecha=new Date();
+
+  video = "i77_BWqf1S8";
+
+  activar:boolean = true;
 }
