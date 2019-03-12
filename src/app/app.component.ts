@@ -2,8 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  templateUrl: './app.component.html'
 })
 export class AppComponent {
   nombre = "Arturo";
@@ -25,4 +24,10 @@ export class AppComponent {
           numero: "12"
       }
   }
+
+  valorDePromesa = new Promise((resolve,reject)=>{
+      setTimeout(()=>resolve('LLego la data!'),3500);
+  })
+
+  fecha=new Date();
 }
