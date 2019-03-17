@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 
 @Component({
   selector: 'app-data',
@@ -16,9 +16,10 @@ export class DataComponent implements OnInit {
           apellido: null,
       },
       email: null,
-      pais: "",
-      sexo:"",
-      acepta: false
+     pasatiempos: []
+      // pais: "",
+      // sexo:"",
+      // acepta: false
   }
 
   constructor() {
@@ -37,13 +38,26 @@ export class DataComponent implements OnInit {
                 Validators.required,
                 Validators.pattern("[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$")
             ]
-        )
+        ),
+        'pasatiempos': new FormArray([
+            new FormControl('', Validators.required)
+        ])
 
     });
+
+    //this.forma.setValue( this.usuario );
+
   }
 
   guardarCambios(){
+      this.forma.reset(this.usuario);
 
+  }
+
+  agregarPasatiempos(){
+    (<FormArray>this.forma.controls['pasatiempos']).push(
+        new FormControl('', Validators.required)
+    )
   }
 
   ngOnInit() {
