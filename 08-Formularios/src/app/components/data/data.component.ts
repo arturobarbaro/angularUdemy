@@ -31,7 +31,10 @@ export class DataComponent implements OnInit {
                     Validators.minLength(3)
                 ]
             ),
-            'apellido': new FormControl('', Validators.required )
+            'apellido': new FormControl('',[
+                Validators.required,
+                this.noApellido
+            ] )
         }),
         'email': new FormControl('',
             [
@@ -41,11 +44,17 @@ export class DataComponent implements OnInit {
         ),
         'pasatiempos': new FormArray([
             new FormControl('', Validators.required)
-        ])
+        ]),
+        'password1': new FormControl('', Validators.required),
+        'password2': new FormControl()
 
     });
 
     //this.forma.setValue( this.usuario );
+    this.forma.controls['password2'].setValidators([
+        Validators.required,
+        this.noIgual.bind(this.forma)
+    ])
 
   }
 
@@ -58,6 +67,28 @@ export class DataComponent implements OnInit {
     (<FormArray>this.forma.controls['pasatiempos']).push(
         new FormControl('', Validators.required)
     )
+  }
+
+  noApellido( control:FormControl): {[s:string]:boolean}{
+      if( control.value == "apellido"){
+          return{
+              noapellido:true
+          }
+      }
+
+      return null;
+  }
+
+  noIgual( control:FormControl): {[s:string]:boolean}{
+      let forma:any=this;
+
+      if( control.value !== forma.controls['password1'].value){
+          return{
+              noiguales:true
+          }
+      }
+
+      return null;
   }
 
   ngOnInit() {
