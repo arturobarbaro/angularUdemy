@@ -10,20 +10,35 @@ export class DataComponent implements OnInit {
 
   forma:FormGroup;
 
+  usuario:Object = {
+      nombreCompleto: {
+          nombre: null,
+          apellido: null,
+      },
+      email: null,
+      pais: "",
+      sexo:"",
+      acepta: false
+  }
+
   constructor() {
     this.forma=new FormGroup({
+
+        'nombreCompleto': new FormGroup({
             'nombre': new FormControl('', [
-                Validators.required,
-                Validators.minLength(3)
-            ]
-        ),
-        'apellido': new FormControl('', Validators.required ),
+                    Validators.required,
+                    Validators.minLength(3)
+                ]
+            ),
+            'apellido': new FormControl('', Validators.required )
+        }),
         'email': new FormControl('',
             [
                 Validators.required,
                 Validators.pattern("[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$")
             ]
         )
+
     });
   }
 
