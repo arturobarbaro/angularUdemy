@@ -14,7 +14,15 @@
                name="nombre"
                [(ngModel)]="usuario.nombre"
                minlength="3"
-               required>
+               required
+               #nombre="ngModel">
+
+               <div class="" *ngIf="nombre.errors?.required">
+                   Este campo es oblogatorio
+               </div>
+               <div class="" *ngIf="nombre.errors?.minlength">
+                   Debe contener al menos  {{nombre.errors.minlength.requiredLength}} caracteres.
+               </div>
       </div>
     </div>
 
@@ -27,8 +35,13 @@
                placeholder="Apellido"
                name="apellido"
                [(ngModel)]="usuario.apellido"
-               minlength="3"
-               required>
+               required
+               #apellido="ngModel">
+
+               <div class="" *ngIf="apellido.errors?.required">
+                   Este campo es oblogatorio
+               </div>
+
       </div>
     </div>
 
@@ -43,7 +56,16 @@
              placeholder="Correo electrónico"
              name="email"
              [(ngModel)]="usuario.email"
-             required>
+             required
+             pattern="[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+             #email="ngModel">
+
+             <div class="" *ngIf="email.errors?.required">
+                 Este campo es oblogatorio
+             </div>
+             <div class="" *ngIf="email.errors?.pattern">
+                 E-mail debe ser válido.
+             </div>
     </div>
   </div>
 
