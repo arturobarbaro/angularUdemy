@@ -12,16 +12,20 @@ export class PaisesComponent implements OnInit {
   paises: any = [];
 
   constructor(
-      private http:HttpClient
+    private http: HttpClient
   ) { }
 
   ngOnInit() {
-      this.http.get('https://restcountries.eu/rest/v2/lang/es')
-      .subscribe(paises=>this.paises=paises);
+
+    this.http.get(`https://restcountries.eu/rest/v2/lang/es`)
+      .subscribe( paises => this.paises = paises );
+
   }
 
-  colocar(e: CdkDragDrop<any>){
-      moveItemInArray(this.paises, e.previousIndex, e.currentIndex)
+  drop(evento: CdkDragDrop<any> ) {
+
+    // console.log('OK!', evento);
+    moveItemInArray( this.paises, evento.previousIndex, evento.currentIndex );
   }
 
 }
